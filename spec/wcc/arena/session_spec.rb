@@ -75,7 +75,7 @@ describe WCC::Arena::Session do
 
   describe "connection wrapper methods" do
     subject { unit.new(args.merge(connection: connection_stub(signed, verb, "poop"))) }
-    let(:signed) { signed_path("test", "id", "api-secret") }
+    let(:signed) { signed_path("test", {}, "id", "api-secret") }
     before(:each) do
       subject.stub(:id) { "id" }
     end
@@ -86,6 +86,12 @@ describe WCC::Arena::Session do
       it "calls get on connection with signed version of path argument" do
         expect(subject.connection).to receive(:get).with(signed).and_return(OpenStruct.new)
         subject.get("test")
+      end
+
+      it "merges in query params with optional query argument" do
+        signed = signed_path("test", { foo: :bar, bar: :baz }, "id", "api-secret")
+        expect(subject.connection).to receive(:get).with(signed).and_return(OpenStruct.new)
+        subject.get("test", foo: "bar", "bar" => "baz")
       end
 
       it "returns a Response object" do
@@ -113,9 +119,10 @@ describe WCC::Arena::Session do
     end
   end
 
-  def signed_path(path, id, secret)
+  def signed_path(path, query, id, secret)
     WCC::Arena::SignedPath.new(
       path: path,
+      query: query,
       session_id: id,
       api_secret: secret
     ).()

@@ -21,15 +21,19 @@ module WCC::Arena
       end
     end
 
-    def get(path)
-      build_response(connection.get(signed_path(path)))
+    def get(path, query={})
+      make_signed_request(:get, path, query)
     end
 
-    def post(path)
-      build_response(connection.post(signed_path(path)))
+    def post(path, query={})
+      make_signed_request(:post, path, query)
     end
 
     private
+
+    def make_signed_request(method, path, query)
+      build_response(connection.public_send(method, signed_path(path, query)))
+    end
 
     def build_response(faraday_response)
       Response.new(
@@ -39,9 +43,10 @@ module WCC::Arena
       )
     end
 
-    def signed_path(path)
+    def signed_path(path, query)
       SignedPath.new(
         path: path,
+        query: query,
         session_id: id,
         api_secret: api_secret
       ).()
