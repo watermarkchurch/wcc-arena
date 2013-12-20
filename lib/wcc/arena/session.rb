@@ -53,19 +53,19 @@ module WCC::Arena
     end
 
     def session_id_node
-      root_node.at("SessionID") || NullNode.new
+      login_root_node.at("SessionID") || NullNode.new
     end
 
     def date_expires_node
-      root_node.at("DateExpires") || NullNode.new
+      login_root_node.at("DateExpires") || NullNode.new
     end
 
-    def root_node
-      response.xml.root
+    def login_root_node
+      login_response.xml.root
     end
 
-    def response
-      @response ||= build_response(
+    def login_response
+      @login_response ||= build_response(
         connection.post("login", {
           username: username,
           password: password,

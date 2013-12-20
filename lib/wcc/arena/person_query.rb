@@ -41,7 +41,7 @@ module WCC::Arena
 
     def query_response
       @response ||= session.get(
-        "/person/list",
+        "person/list",
         prepared_conditions.merge(sort_arguments)
       )
     end

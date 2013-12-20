@@ -65,7 +65,7 @@ describe WCC::Arena::PersonQuery do
     it "makes a get request to /person/list with query params" do
       conditions = { first_name: "Foo", last_name: "Bar" }
       query = { "firstname" => "Foo", "lastname" => "Bar", "sortfield" => "firstname", "sortdirection" => "DESC" }
-      expect(subject.session).to receive(:get).with("/person/list", query).and_return(fixture_response)
+      expect(subject.session).to receive(:get).with("person/list", query).and_return(fixture_response)
       subject.where(conditions).order("first_name DESC").()
     end
 

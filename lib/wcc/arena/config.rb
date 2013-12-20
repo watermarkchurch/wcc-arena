@@ -12,6 +12,7 @@ module WCC::Arena
 
     def default_connection
       Faraday.new(url: api_url) do |faraday|
+        faraday.request :url_encoded
         faraday.response :logger
         faraday.adapter Faraday.default_adapter
       end
