@@ -1,4 +1,8 @@
-$LOAD_PATH.unshift File.join(File.dirname(__FILE__), "..", "lib")
+SPEC_DIR = File.dirname(__FILE__)
+FIXTURES_DIR = File.join(SPEC_DIR, "fixtures")
+
+$LOAD_PATH.unshift File.join(SPEC_DIR, "..", "lib")
+
 require 'wcc/arena'
 
 RSpec.configure do |config|

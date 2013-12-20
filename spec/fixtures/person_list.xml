@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<PersonListResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Persons>
+    <Person>
+      <Addresses>
+        <Address>
+          <AddressID>103921</AddressID>
+          <City>Dallas</City>
+          <Country>US</Country>
+          <Latitude>32.974063</Latitude>
+          <Longitude>-96.746458</Longitude>
+          <PostalCode>75080</PostalCode>
+          <Primary>true</Primary>
+          <State>TX</State>
+          <StreetLine1>123 Main St</StreetLine1>
+        </Address>
+      </Addresses>
+      <AreaName/>
+      <BlobLink>http://arena.watermark.org/CachedBlob.aspx?guid=14492ABC-6390-4C30-B832-57C777321FB0</BlobLink>
+      <CampusID>1</CampusID>
+      <CampusName>Dallas</CampusName>
+      <CellPhone>(214) 555-1213</CellPhone>
+      <FamilyID>14808</FamilyID>
+      <FamilyMemberRoleID>29</FamilyMemberRoleID>
+      <FamilyMemberRoleValue>Adult</FamilyMemberRoleValue>
+      <FirstActiveEmail>dduck@disney.com</FirstActiveEmail>
+      <FirstName>Donald</FirstName>
+      <Gender>Male</Gender>
+      <HomePhone>(972) 555-1212</HomePhone>
+      <LastName>Duck</LastName>
+      <MemberStatusID>500039</MemberStatusID>
+      <MemberStatusValue>Prospect</MemberStatusValue>
+      <NickName>Donald</NickName>
+      <PersonGUID>8d21bb7e-72ed-487b-a6e0-484066fe10b2</PersonGUID>
+      <PersonID>157302</PersonID>
+      <PersonLink>person/8d21bb7e-72ed-487b-a6e0-484066fe10b2</PersonLink>
+      <RecordStatusValue>Active</RecordStatusValue>
+    </Person>
+    <Person>
+      <Addresses>
+        <Address>
+          <AddressID>103921</AddressID>
+          <City>Dallas</City>
+          <Country>US</Country>
+          <Latitude>32.974063</Latitude>
+          <Longitude>-96.746458</Longitude>
+          <PostalCode>75080</PostalCode>
+          <Primary>true</Primary>
+          <State>TX</State>
+          <StreetLine1>123 Main St</StreetLine1>
+        </Address>
+      </Addresses>
+      <AreaName/>
+      <BlobLink>http://arena.watermark.org/CachedBlob.aspx?guid=14492ABC-6390-4C30-B832-57C777321FB0</BlobLink>
+      <CampusID>1</CampusID>
+      <CampusName>Dallas</CampusName>
+      <CellPhone>(214) 555-1213</CellPhone>
+      <FamilyID>14808</FamilyID>
+      <FamilyMemberRoleID>29</FamilyMemberRoleID>
+      <FamilyMemberRoleValue>Adult</FamilyMemberRoleValue>
+      <FirstActiveEmail>dduck@disney.com</FirstActiveEmail>
+      <FirstName>Don</FirstName>
+      <Gender>Male</Gender>
+      <HomePhone>(972) 555-1212</HomePhone>
+      <LastName>Duck</LastName>
+      <MemberStatusID>500039</MemberStatusID>
+      <MemberStatusValue>Prospect</MemberStatusValue>
+      <NickName>Donald</NickName>
+      <PersonGUID>8d21bb7e-72ed-487b-a6e0-484066fe10b2</PersonGUID>
+      <PersonID>157302</PersonID>
+      <PersonLink>person/8d21bb7e-72ed-487b-a6e0-484066fe10b2</PersonLink>
+      <RecordStatusValue>Active</RecordStatusValue>
+    </Person>
+  </Persons>
+</PersonListResult>
