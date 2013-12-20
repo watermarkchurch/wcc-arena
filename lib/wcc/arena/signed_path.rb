@@ -1,14 +1,16 @@
+require 'uri'
 require 'digest/md5'
 
 module WCC::Arena
 
   class SignedPath
-    attr_reader :path, :session_id, :api_secret
+    attr_reader :path, :query, :session_id, :api_secret
 
     def initialize(args={})
       @path = args.fetch(:path)
       @session_id = args.fetch(:session_id)
       @api_secret = args.fetch(:api_secret)
+      @query = args.fetch(:query) { Hash.new }
     end
 
     def call
@@ -21,8 +23,8 @@ module WCC::Arena
     def path_with_session
       [
         path,
-        "api_session=#{session_id}",
-      ].join("&")
+        URI.encode_www_form(query.merge(api_session: session_id)),
+      ].join("?")
     end
 
     def api_sig
