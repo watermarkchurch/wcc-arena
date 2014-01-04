@@ -5,10 +5,17 @@ PROJECT_PATH = File.dirname(__FILE__)
 LIB_PATH = File.join(PROJECT_PATH, "lib")
 CREDENTIALS_PATH = File.join(PROJECT_PATH, ".arena-creds")
 
+task :default => :test
+
 desc 'set load path and require the gem'
 task :environment do
   $LOAD_PATH.unshift(LIB_PATH)
   require 'wcc/arena'
+end
+
+desc 'run test examples'
+task :test do
+  exec 'rspec .'
 end
 
 desc 'open an IRB session with environment loaded'
