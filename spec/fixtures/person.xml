@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<Person xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <ActiveMeter>0</ActiveMeter>
+  <Addresses>
+    <Address>
+      <AddressID>103921</AddressID>
+      <AddressTypeID>7367</AddressTypeID>
+      <AddressTypeValue>Main/Home Address</AddressTypeValue>
+      <City>Dallas</City>
+      <Country>US</Country>
+      <Latitude>31.874043</Latitude>
+      <Longitude>-92.642458</Longitude>
+      <PostalCode>75000</PostalCode>
+      <Primary>true</Primary>
+      <State>TX</State>
+      <StreetLine1>123 Main Lane</StreetLine1>
+      <StreetLine2/>
+    </Address>
+  </Addresses>
+  <Age>-1</Age>
+  <AnniversaryDate>2007-01-21T00:00:00</AnniversaryDate>
+  <AttributesLink>person/8d21bb7e-72ed-487b-a6e0-484066fe10b2/attribute/list</AttributesLink>
+  <BirthDate>1900-01-01T00:00:00</BirthDate>
+  <BlobID>6135</BlobID>
+  <BlobLink>http://arena.watermark.org/CachedBlob.aspx?guid=14492abc-6390-4c30-b832-57c777321fb0</BlobLink>
+  <CampusID>1</CampusID>
+  <CampusName>Dallas</CampusName>
+  <ContributeIndividually>false</ContributeIndividually>
+  <DateCreated>2007-01-22T09:57:52.077</DateCreated>
+  <DateModified>2009-09-09T08:48:04.353</DateModified>
+  <DisplayNotesCount>0</DisplayNotesCount>
+  <Emails>
+    <Email>
+      <Address>dduck@disney.com</Address>
+    </Email>
+  </Emails>
+  <EnvelopeNumber>-1</EnvelopeNumber>
+  <FamilyID>14808</FamilyID>
+  <FamilyLink>family/14808</FamilyLink>
+  <FamilyMemberRoleID>29</FamilyMemberRoleID>
+  <FamilyMemberRoleValue>Adult</FamilyMemberRoleValue>
+  <FamilyMembersCount>2</FamilyMembersCount>
+  <FamilyName>Duck Family</FamilyName>
+  <FirstName>Donald</FirstName>
+  <ForeignKey>13567</ForeignKey>
+  <ForeignKey2>0</ForeignKey2>
+  <FullName>Donald Duck</FullName>
+  <Gender>Male</Gender>
+  <GivingUnitID>F14808</GivingUnitID>
+  <InactiveReasonID>-1</InactiveReasonID>
+  <InactiveReasonValue>Unknown</InactiveReasonValue>
+  <IncludeOnEnvelope>false</IncludeOnEnvelope>
+  <LastName>Duck</LastName>
+  <MaritalStatusID>7551</MaritalStatusID>
+  <MaritalStatusValue>Married</MaritalStatusValue>
+  <MedicalInformation/>
+  <MemberStatusID>500039</MemberStatusID>
+  <MemberStatusValue>Prospect</MemberStatusValue>
+  <MiddleName/>
+  <NickName>Donald</NickName>
+  <Notes/>
+  <NotesLink>person/8d21bb7e-72ed-487b-a6e0-484066fe10b2/note/list</NotesLink>
+  <OrganizationID>1</OrganizationID>
+  <PersonGUID>8d21bb7e-72ed-487b-a6e0-484066fe10b2</PersonGUID>
+  <PersonID>157302</PersonID>
+  <PersonLink>person/8d21bb7e-72ed-487b-a6e0-484066fe10b2</PersonLink>
+  <Phones>
+    <Phone>
+      <Extension/>
+      <Number>(972) 555-1212</Number>
+      <PhoneTypeID>7360</PhoneTypeID>
+      <PhoneTypeValue>Main/Home</PhoneTypeValue>
+    </Phone>
+    <Phone>
+      <Extension/>
+      <Number>(214) 555-1213</Number>
+      <PhoneTypeID>7364</PhoneTypeID>
+      <PhoneTypeValue>Cell Phone</PhoneTypeValue>
+    </Phone>
+  </Phones>
+  <PrintStatement>true</PrintStatement>
+  <RecordStatusID>0</RecordStatusID>
+  <RecordStatusValue>Active</RecordStatusValue>
+  <RegionName/>
+  <SuffixID>-1</SuffixID>
+  <SuffixValue>Unknown</SuffixValue>
+  <TitleID>7388</TitleID>
+  <TitleValue>Mr.</TitleValue>
+</Person>
