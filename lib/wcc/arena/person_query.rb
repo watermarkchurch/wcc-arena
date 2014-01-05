@@ -26,17 +26,14 @@ module WCC::Arena
 
     def call
       response_people_xml.collect do |person_xml|
-        Person.new(
-          first_name: person_xml.at("FirstName").text,
-          last_name: person_xml.at("LastName").text
-        )
+        Person.new(person_xml)
       end
     end
 
     private
 
     def response_people_xml
-      query_response.xml.root.at("Persons").elements
+      query_response.xml.root.xpath("Persons/Person")
     end
 
     def query_response
