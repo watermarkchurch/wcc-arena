@@ -10,12 +10,21 @@ module WCC::Arena::Mappers
 
     def [](attribute)
       if config = self.class.attributes[attribute]
-        path = document.xpath(config[:xpath])
-        path.text if path.size > 0
+        node = document.xpath(config[:xpath])
+        node.text if node.size > 0
       else
         raise KeyError, "Attribute #{attribute} is not defined"
       end
     end
+
+    def load_association(name)
+      if config = self.class.associations[name]
+        document.xpath(config[:xpath]).collect do |node|
+          config[:klass].new(node)
+        end
+      end
+    end
+    private :load_association
 
     module ClassMethods
 
@@ -31,8 +40,28 @@ module WCC::Arena::Mappers
         @attributes ||= {}
       end
 
+      def associations
+        @associations ||= {}
+      end
+
+      def has_many(name, options)
+        options.fetch(:xpath) {
+          raise ArgumentError, ":xpath is a required argument to the `has_many' method"
+        }
+        options.fetch(:klass) {
+          raise ArgumentError, ":klass is a required argument to the `has_many' method"
+        }
+        associations[name] = options.freeze
+        define_method(name) do
+          @association_cache ||= {}
+          @association_cache[name] ||= load_association(name)
+        end
+      end
+
       def inherited(subclass)
+        super
         subclass.instance_variable_set(:@attributes, attributes.dup)
+        subclass.instance_variable_set(:@associations, associations.dup)
       end
 
     end
