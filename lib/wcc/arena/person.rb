@@ -9,7 +9,7 @@ module WCC::Arena
   class Person
     include WCC::Arena::Mappers::XML
 
-    attribute :id, xpath: "PersonID"
+    attribute :id, xpath: "PersonID", type: :integer
     attribute :guid, xpath: "PersonGUID"
 
     attribute :first_name, xpath: "FirstName"
@@ -18,12 +18,12 @@ module WCC::Arena
     attribute :last_name, xpath: "LastName"
     attribute :full_name, xpath: "FullName"
 
-    attribute :age, xpath: "Age"
-    attribute :birth_date, xpath: "BirthDate"
+    attribute :age, xpath: "Age", type: :integer
+    attribute :birth_date, xpath: "BirthDate", type: :date
     attribute :campus_name, xpath: "CampusName"
-    attribute :family_id, xpath: "FamilyID"
+    attribute :family_id, xpath: "FamilyID", type: :integer
     attribute :gender, xpath: "Gender"
-    attribute :member_status_id, xpath: "MemberStatusID"
+    attribute :member_status_id, xpath: "MemberStatusID", type: :integer
     attribute :member_status_value, xpath: "MemberStatusValue"
     attribute :status, xpath: "RecordStatusValue"
 

@@ -1,3 +1,5 @@
+require 'date'
+
 module WCC::Arena::Mappers
 
   module XML
@@ -9,9 +11,8 @@ module WCC::Arena::Mappers
     end
 
     def [](attribute)
-      if config = self.class.attributes[attribute]
-        node = document.xpath(config[:xpath])
-        node.text if node.size > 0
+      if self.class.attributes[attribute]
+        load_attribute(attribute)
       else
         raise KeyError, "Attribute #{attribute} is not defined"
       end
@@ -36,6 +37,29 @@ module WCC::Arena::Mappers
       end
     end
     private :load_association
+
+    def load_attribute(attribute)
+      config = self.class.attributes[attribute]
+      node = document.xpath(config[:xpath])
+      cast_attribute(node.text, config[:type])
+    end
+
+    def cast_attribute(text, type)
+      return nil if text.empty?
+
+      case type
+      when :integer
+        Integer(text)
+      when :date
+        Date.strptime(text.split("T").first, "%Y-%m-%d")
+      when :time
+        Time.parse(text)
+      when :boolean
+        text == "true"
+      else
+        text
+      end
+    end
 
     module ClassMethods
 

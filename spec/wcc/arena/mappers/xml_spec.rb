@@ -69,6 +69,51 @@ describe WCC::Arena::Mappers::XML do
       subclass.attribute :bar, fake_options
       expect(subclass.attributes).to_not eq(subject.attributes)
     end
+
+    context "when :type argument is set" do
+      let(:xml_doc) {
+        data = [
+          "<int>123</int>",
+          "<string>a string</string>",
+          "<time>2007-01-22T09:57:52.077</time>",
+          "<date>1900-01-01T00:00:00</date>",
+          "<bool>true</bool>",
+          "<bool_false>false</bool_false>",
+        ].join
+        Nokogiri::XML.parse("<doc>#{data}</doc>")
+      }
+      let(:obj) { subject.new(xml_doc) }
+
+      it "converts to an integer when type is :integer" do
+        subject.attribute :int, xpath: "//int", type: :integer
+        expect(obj.int).to eq(123)
+      end
+
+      it "does no conversion type is :string" do
+        subject.attribute :string, xpath: "//string", type: :string
+        expect(obj.string).to eq("a string")
+      end
+
+      it "converts to a date when type is :date" do
+        subject.attribute :date, xpath: "//date", type: :date
+        expect(obj.date).to eq(Date.new(1900, 1, 1))
+      end
+
+      it "converts to a time when type is :time" do
+        subject.attribute :time, xpath: "//time", type: :time
+        expect(obj.time).to be_within(1).of(Time.new(2007, 1, 22, 9, 57, 52))
+      end
+
+      it "converts to a boolean when type is :boolean" do
+        subject.attribute :bool_true, xpath: "//bool", type: :boolean
+        subject.attribute :bool_false, xpath: "//bool_false", type: :boolean
+        subject.attribute :bool_undef, xpath: "//notindocument", type: :boolean
+        expect(obj.bool_true).to eq(true)
+        expect(obj.bool_false).to eq(false)
+        expect(obj.bool_undef).to be_nil
+      end
+    end
+
   end
 
   describe "::has_many" do
