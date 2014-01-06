@@ -1,5 +1,9 @@
 require 'wcc/arena/person_query'
 
+require 'wcc/arena/address'
+require 'wcc/arena/email'
+require 'wcc/arena/phone'
+
 module WCC::Arena
 
   class Person
@@ -21,13 +25,19 @@ module WCC::Arena
     attribute :gender, xpath: "Gender"
     attribute :member_status_id, xpath: "MemberStatusID"
     attribute :member_status_value, xpath: "MemberStatusValue"
+    attribute :status, xpath: "RecordStatusValue"
+
+    attribute :home_phone, xpath: "HomePhone"
+    attribute :business_phone, xpath: "BusinessPhone"
+    attribute :cell_phone, xpath: "CellPhone"
+
+    attribute :email, xpath: "FirstActiveEmail"
 
     alias :member_status :member_status_value
 
-    #has_many :addresses
-    #has_many :emails
-    #has_many :notes
-    #has_many :phones
+    has_many :addresses, xpath: "Addresses/Address", klass: Address
+    has_many :emails, xpath: "Emails/Email", klass: Email
+    has_many :phones, xpath: "Phones/Phone", klass: Phone
   end
 
 end

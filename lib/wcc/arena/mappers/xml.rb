@@ -17,6 +17,17 @@ module WCC::Arena::Mappers
       end
     end
 
+    def attributes
+      self.class.attributes.each_with_object({}) do |(name, options), hash|
+        hash[name] = self[name]
+      end
+    end
+
+    def inspect
+      "<#{self.class.name}" \
+      "#{attributes.collect { |(name, value)| [name, value.inspect].join("=") }.join(" ")}>"
+    end
+
     def load_association(name)
       if config = self.class.associations[name]
         document.xpath(config[:xpath]).collect do |node|
