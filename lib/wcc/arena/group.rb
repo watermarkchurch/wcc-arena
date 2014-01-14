@@ -1,6 +1,7 @@
 require 'wcc/arena/group_query'
 
 require 'wcc/arena/address'
+require 'wcc/arena/group_member'
 
 module WCC::Arena
   class Group
@@ -17,5 +18,9 @@ module WCC::Arena
     attribute :leader_id, xpath: "LeaderID", type: :integer
 
     has_one :address, xpath: "TargetLocation", klass: Address
+
+    def members
+      @members ||= GroupMemberQuery.new(group_id: id).()
+    end
   end
 end
