@@ -116,35 +116,97 @@ describe WCC::Arena::Mappers::XML do
 
   end
 
-  describe "::has_many" do
-    let(:fake_args) { { xpath: "foo", klass: "foo" } }
+  describe "::add_association" do
+    let(:fake_args) { { xpath: "foo", klass: "foo", type: :many } }
 
     it "requires xpath option" do
       fake_args.delete(:xpath)
-      expect { subject.has_many :foos, fake_args }.to raise_error(ArgumentError)
+      expect { subject.add_association :foos, fake_args }.to raise_error(ArgumentError)
     end
 
     it "requires klass option" do
       fake_args.delete(:klass)
-      expect { subject.has_many :foos, fake_args }.to raise_error(ArgumentError)
+      expect { subject.add_association :foos, fake_args }.to raise_error(ArgumentError)
+    end
+
+    it "requires type option" do
+      fake_args.delete(:type)
+      expect { subject.add_association :foos, fake_args }.to raise_error(ArgumentError)
     end
 
     it "stores data in @associations class ivar hash" do
-      subject.has_many :foos, fake_args
+      subject.add_association :foos, fake_args
       expect(subject.associations[:foos]).to eq(fake_args)
     end
 
     it "freezes the options" do
-      subject.has_many :foos, fake_args
+      subject.add_association :foos, fake_args
       expect { subject.associations[:foos][:bar] = "test" }.to raise_error(RuntimeError)
     end
 
     it "flows down the class hierarchy" do
-      subject.has_many :foos, fake_args
+      subject.add_association :foos, fake_args
       subclass = Class.new(subject)
       expect(subclass.associations).to eq(subject.associations)
-      subclass.has_many :bars, fake_args
+      subclass.add_association :bars, fake_args
       expect(subclass.associations).to_not eq(subject.associations)
+    end
+
+    it "defines an instance method with the included block if provided" do
+      ping = :not_called
+      subject.add_association :foos, fake_args do
+        ping = :called
+      end
+      obj = subject.new(:doc)
+      expect(obj).to respond_to(:foos)
+      obj.foos
+      expect(ping).to eq(:called)
+    end
+  end
+
+  describe "::has_one" do
+    let(:fake_args) { { xpath: "foo", klass: "foo" } }
+
+    it "calls add_association with args and type merged in" do
+      expect(subject).to receive(:add_association).with(:foo, fake_args.merge(type: :one))
+      subject.has_one :foo, fake_args
+    end
+
+    describe "created instance method" do
+      it "is defined" do
+        subject.has_one :foo, fake_args
+        expect(subject.new(:doc)).to respond_to(:foo)
+      end
+
+      it "returns nil when document has no match" do
+        subject.has_one :foo, fake_args.merge(klass: Class.new)
+        expect(subject.new(doc).foo).to be_nil
+      end
+
+      context "with real data" do
+        before(:each) do
+          subject.has_one :person, klass: WCC::Arena::Person, xpath: "/Person"
+        end
+        let(:obj) { subject.new(doc) }
+
+        it "returns an instance of class when the document does have a match" do
+          expect(obj.person).to be_a(WCC::Arena::Person)
+        end
+
+        it "caches the value" do
+          expect(obj).to receive(:load_association).with(:person).once.and_return(:foo)
+          2.times { obj.person }
+        end
+      end
+    end
+  end
+
+  describe "::has_many" do
+    let(:fake_args) { { xpath: "foo", klass: "foo" } }
+
+    it "calls add_association with args and type merged in" do
+      expect(subject).to receive(:add_association).with(:foo, fake_args.merge(type: :many))
+      subject.has_many :foo, fake_args
     end
 
     describe "created instance method" do

@@ -31,8 +31,14 @@ module WCC::Arena::Mappers
 
     def load_association(name)
       if config = self.class.associations[name]
-        document.xpath(config[:xpath]).collect do |node|
+        list = document.xpath(config[:xpath]).collect do |node|
           config[:klass].new(node)
+        end
+        case config[:type]
+        when :many
+          list
+        when :one
+          list.first
         end
       end
     end
@@ -79,18 +85,32 @@ module WCC::Arena::Mappers
         @associations ||= {}
       end
 
-      def has_many(name, options)
-        options.fetch(:xpath) {
-          raise ArgumentError, ":xpath is a required argument to the `has_many' method"
-        }
-        options.fetch(:klass) {
-          raise ArgumentError, ":klass is a required argument to the `has_many' method"
-        }
-        associations[name] = options.freeze
-        define_method(name) do
+      def has_one(name, options)
+        add_association(name, options.merge(type: :one)) do
           @association_cache ||= {}
           @association_cache[name] ||= load_association(name)
         end
+      end
+
+      def has_many(name, options)
+        add_association(name, options.merge(type: :many)) do
+          @association_cache ||= {}
+          @association_cache[name] ||= load_association(name)
+        end
+      end
+
+      def add_association(name, options, &block)
+        options.fetch(:xpath) {
+          raise ArgumentError, ":xpath is a required argument"
+        }
+        options.fetch(:klass) {
+          raise ArgumentError, ":klass is a required argument"
+        }
+        options.fetch(:type) {
+          raise ArgumentError, ":type is a required argument"
+        }
+        associations[name] = options.freeze
+        define_method(name, &block) if block_given?
       end
 
       def inherited(subclass)
