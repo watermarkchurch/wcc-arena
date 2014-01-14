@@ -8,6 +8,12 @@ describe WCC::Arena::Config do
       expect(subject.connection).to be_a(Faraday::Connection)
     end
   end
+
+  describe "default session" do
+    it "should return a session" do
+      expect(subject.session).to be_a(WCC::Arena::Session)
+    end
+  end
 end
 
 describe WCC::Arena do

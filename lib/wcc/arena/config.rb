@@ -8,6 +8,16 @@ module WCC::Arena
       @connection ||= default_connection
     end
 
+    def session
+      @session ||= WCC::Arena::Session.new(
+        connection: connection,
+        username: username,
+        password: password,
+        api_key: api_key,
+        api_secret: api_secret
+      )
+    end
+
     private
 
     def default_connection
