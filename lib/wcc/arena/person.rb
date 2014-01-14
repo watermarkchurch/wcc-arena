@@ -9,6 +9,7 @@ module WCC::Arena
   class Person
     include WCC::Arena::Mappers::XML
 
+    DEFAULT_CATEGORY_ID = 1
     IS_MEMBER_STATUS_ID = 7404
 
     attribute :id, xpath: "PersonID", type: :integer
@@ -43,6 +44,10 @@ module WCC::Arena
 
     def member?
       member_status_id == IS_MEMBER_STATUS_ID
+    end
+
+    def groups
+      @groups ||= GroupQuery.new(person_id: id, category_id: DEFAULT_CATEGORY_ID).()
     end
 
   end

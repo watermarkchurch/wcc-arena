@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe WCC::Arena::Person do
+  include FixturesHelpers
   let(:unit) { WCC::Arena::Person }
 
   it "includes Mappers::XML" do
@@ -15,6 +16,18 @@ describe WCC::Arena::Person do
       obj.stub(:member_status_id) { 0 }
       expect(obj.member?).to be_false
     end
+  end
+
+  describe "#groups" do
+
+    it "initializes GroupQuery with id and default category and calls it" do
+      expect(WCC::Arena::GroupQuery).to receive(:new).with(person_id: 123, category_id: 1).and_return(query = double(:query)).once
+      expect(query).to receive(:call).and_return(:non_nil)
+      person = unit.new(:doc)
+      person.stub(:id) { 123 }
+      2.times { person.groups }
+    end
+
   end
 
 end
