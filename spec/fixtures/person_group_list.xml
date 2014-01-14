@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<GroupListResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Groups>
+    <Group>
+      <Active>true</Active>
+      <AreaID>9</AreaID>
+      <AreaName>North Dallas Area</AreaName>
+      <AverageAge>27</AverageAge>
+      <Description/>
+      <GroupClusterID>1378</GroupClusterID>
+      <GroupClusterTitle>Small Group Awesome</GroupClusterTitle>
+      <GroupID>1407</GroupID>
+      <GroupTypeID>-1</GroupTypeID>
+      <GroupTypeValue>Unknown</GroupTypeValue>
+      <GroupUrl/>
+      <Guid>56d153b5-9c30-41d8-9f0c-c566d42ecde8</Guid>
+      <ImageBlobLink/>
+      <LeaderID>168827</LeaderID>
+      <LeaderLink>person/168827</LeaderLink>
+      <MaxMembers>20</MaxMembers>
+      <MeetingDayID>9</MeetingDayID>
+      <MeetingDayValue>Sunday</MeetingDayValue>
+      <MeetingEndTime>1900-01-01T00:00:00</MeetingEndTime>
+      <MeetingStartTime>1900-01-01T00:00:00</MeetingStartTime>
+      <MemberLink>group/1407/member/list</MemberLink>
+      <Name>Small Group Awesome</Name>
+      <Notes/>
+      <PictureUrl/>
+      <PrimaryAgeID>337</PrimaryAgeID>
+      <PrimaryAgeValue>Any</PrimaryAgeValue>
+      <PrimaryMaritalStatusID>338</PrimaryMaritalStatusID>
+      <PrimaryMaritalStatusValue>Any</PrimaryMaritalStatusValue>
+      <Schedule/>
+      <TargetLocation>
+        <AddressID>115364</AddressID>
+        <City>Dallas</City>
+        <Country>US</Country>
+        <Latitude>32.019239</Latitude>
+        <Longitude>-97.296295</Longitude>
+        <PostalCode>75000-1234</PostalCode>
+        <Primary>true</Primary>
+        <State>TX</State>
+        <StreetLine1>123 Main St</StreetLine1>
+        <StreetLine2/>
+      </TargetLocation>
+      <TargetLocationID>168827</TargetLocationID>
+      <Title>Small Group Awesome</Title>
+      <TopicID>500050</TopicID>
+      <TopicValue>Unknown</TopicValue>
+    </Group>
+  </Groups>
+</GroupListResult>

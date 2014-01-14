@@ -9,4 +9,5 @@ require "wcc/arena/response"
 require "wcc/arena/session"
 require "wcc/arena/signed_path"
 
+require "wcc/arena/group"
 require "wcc/arena/person"
