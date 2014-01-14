@@ -9,6 +9,8 @@ module WCC::Arena
   class Person
     include WCC::Arena::Mappers::XML
 
+    IS_MEMBER_STATUS_ID = 7404
+
     attribute :id, xpath: "PersonID", type: :integer
     attribute :guid, xpath: "PersonGUID"
 
@@ -38,6 +40,11 @@ module WCC::Arena
     has_many :addresses, xpath: "Addresses/Address", klass: Address
     has_many :emails, xpath: "Emails/Email", klass: Email
     has_many :phones, xpath: "Phones/Phone", klass: Phone
+
+    def member?
+      member_status_id == IS_MEMBER_STATUS_ID
+    end
+
   end
 
 end
