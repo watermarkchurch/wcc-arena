@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe WCC::Arena::PersonQuery do
+  include FixturesHelpers
   subject { unit.new(args) }
   let(:unit) { WCC::Arena::PersonQuery }
   let(:args) {
@@ -11,10 +12,14 @@ describe WCC::Arena::PersonQuery do
 
   describe "#initialize" do
     subject { unit }
-    it "requires a Session instance" do
+    it "sets the session ivar" do
       query = subject.new(args)
       expect(query.session).to eq(args[:session])
-      expect { subject.new }.to raise_error(KeyError)
+    end
+
+    it "defaults session to global config value" do
+      query = subject.new
+      expect(query.session).to eq(WCC::Arena.config.session)
     end
 
     it "sets conditions to empty hash" do
@@ -77,14 +82,6 @@ describe WCC::Arena::PersonQuery do
       expect(records.first.first_name).to eq("Donald")
       expect(records.first.last_name).to eq("Duck")
     end
-  end
-
-  def xml_fixture_response(file)
-    WCC::Arena::Response.new(
-      status: 200,
-      headers: { 'content-type' => 'application/xml' },
-      body: File.open(File.join(FIXTURES_DIR, file)).read
-    )
   end
 
 end

@@ -6,7 +6,7 @@ module WCC::Arena
     attr_reader :order_field, :order_dir
 
     def initialize(args={})
-      @session = args.fetch(:session)
+      @session = args.fetch(:session) { WCC::Arena.config.session }
       @conditions = {}
     end
 
