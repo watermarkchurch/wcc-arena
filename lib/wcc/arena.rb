@@ -11,3 +11,4 @@ require "wcc/arena/signed_path"
 
 require "wcc/arena/group"
 require "wcc/arena/person"
+require "wcc/arena/profile"

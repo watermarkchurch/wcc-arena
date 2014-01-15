@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<ProfileListResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Profiles>
+    <Profile>
+      <Active>true</Active>
+      <ActiveBranch>true</ActiveBranch>
+      <ActiveMembers>125</ActiveMembers>
+      <BlobLink/>
+      <CampusID>-1</CampusID>
+      <CampusName/>
+      <CreatedBy>Bob</CreatedBy>
+      <DateCreated>2008-03-20T15:23:49.297</DateCreated>
+      <DateModified>2008-03-20T15:23:49.297</DateModified>
+      <DormantMembers>66</DormantMembers>
+      <EndTime>1900-01-01T00:00:00</EndTime>
+      <Guid>8e916c5f-9076-423b-8b1f-9b5a76b0465e</Guid>
+      <HierarchyLevel>-1</HierarchyLevel>
+      <MembersLink>profile/1905/member/list</MembersLink>
+      <ModifiedBy>Bob</ModifiedBy>
+      <Name>2008 Spring - HighLight</Name>
+      <Notes/>
+      <OrganizationID>1</OrganizationID>
+      <OwnerID>155909</OwnerID>
+      <OwnerLink>person/02e35ce8-1c2e-47d1-bfec-b933bfab4adc</OwnerLink>
+      <ParentProfileLink/>
+      <ProfileActiveMemberCount>125</ProfileActiveMemberCount>
+      <ProfileID>1905</ProfileID>
+      <ProfileMemberCount>191</ProfileMemberCount>
+      <ProfileTypeID>1</ProfileTypeID>
+      <ProfileTypeValue>Ministry</ProfileTypeValue>
+      <QualifierID>-1</QualifierID>
+      <QualifierValue>Unknown</QualifierValue>
+      <StartTime>1900-01-01T00:00:00</StartTime>
+      <Summary/>
+      <Title>2008 Spring - HighLight</Title>
+      <TotalMembers>191</TotalMembers>
+    </Profile>
+    <Profile i:nil="true"/>
+    <Profile>
+      <Active>true</Active>
+      <ActiveBranch>true</ActiveBranch>
+      <BlobLink/>
+      <CampusID>-1</CampusID>
+      <CampusName/>
+      <CreatedBy>Bob</CreatedBy>
+      <DateCreated>2011-06-02T11:01:31.5</DateCreated>
+      <DateModified>2011-06-02T11:01:31.5</DateModified>
+      <EndTime>1900-01-01T00:00:00</EndTime>
+      <Guid>33d99405-5b77-4812-8424-a97ef693e1b6</Guid>
+      <HierarchyLevel>-1</HierarchyLevel>
+      <ModifiedBy>Bob</ModifiedBy>
+      <Name>2008 Spring - HighLight (Copy)</Name>
+      <Notes/>
+      <OrganizationID>1</OrganizationID>
+      <OwnerID>155909</OwnerID>
+      <OwnerLink>person/02e35ce8-1c2e-47d1-bfec-b933bfab4adc</OwnerLink>
+      <ParentProfileLink/>
+      <ProfileID>2986</ProfileID>
+      <ProfileTypeID>1</ProfileTypeID>
+      <ProfileTypeValue>Ministry</ProfileTypeValue>
+      <QualifierID>-1</QualifierID>
+      <QualifierValue>Unknown</QualifierValue>
+      <StartTime>1900-01-01T00:00:00</StartTime>
+      <Summary/>
+      <Title>2008 Spring - HighLight (Copy)</Title>
+    </Profile>
+  </Profiles>
+</ProfileListResult>
