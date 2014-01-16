@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ModifyResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Link>profile/5baef411-cc61-45cd-8786-a3920e691ca9/member/7c3675c9-e632-4310-9382-5a8de1e0873e</Link>
+  <Successful>True</Successful>
+  <ValidationResults xmlns:a="http://schemas.datacontract.org/2004/07/Arena.Services.Contracts"/>
+</ModifyResult>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ModifyResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <ErrorMessage>SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.</ErrorMessage>
+  <Successful>False</Successful>
+  <ValidationResults xmlns:a="http://schemas.datacontract.org/2004/07/Arena.Services.Contracts"/>
+</ModifyResult>

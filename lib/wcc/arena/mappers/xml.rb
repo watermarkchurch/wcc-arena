@@ -26,7 +26,7 @@ module WCC::Arena::Mappers
     end
 
     def inspect
-      "<#{self.class.name}" \
+      "<#{self.class.name} " \
       "#{attributes.collect { |(name, value)| [name, value.inspect].join("=") }.join(" ")}>"
     end
 

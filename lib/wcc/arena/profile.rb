@@ -1,4 +1,5 @@
 require 'wcc/arena/profile_query'
+require 'wcc/arena/profile_member_save'
 
 module WCC::Arena
 
