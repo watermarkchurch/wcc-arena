@@ -77,7 +77,8 @@ describe WCC::Arena::Mappers::XML do
           "<string>a string</string>",
           "<time>2007-01-22T09:57:52.077</time>",
           "<date>1900-01-01T00:00:00</date>",
-          "<bool>true</bool>",
+          "<bool_true1>true</bool>",
+          "<bool_true2>True</bool>",
           "<bool_false>false</bool_false>",
         ].join
         Nokogiri::XML.parse("<doc>#{data}</doc>")
@@ -105,10 +106,12 @@ describe WCC::Arena::Mappers::XML do
       end
 
       it "converts to a boolean when type is :boolean" do
-        subject.attribute :bool_true, xpath: "//bool", type: :boolean
+        subject.attribute :bool_true1, xpath: "//bool_true1", type: :boolean
+        subject.attribute :bool_true2, xpath: "//bool_true2", type: :boolean
         subject.attribute :bool_false, xpath: "//bool_false", type: :boolean
         subject.attribute :bool_undef, xpath: "//notindocument", type: :boolean
-        expect(obj.bool_true).to eq(true)
+        expect(obj.bool_true1).to eq(true)
+        expect(obj.bool_true2).to eq(true)
         expect(obj.bool_false).to eq(false)
         expect(obj.bool_undef).to be_nil
       end

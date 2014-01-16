@@ -62,7 +62,7 @@ module WCC::Arena::Mappers
       when :time
         Time.parse(text)
       when :boolean
-        text == "true"
+        text.downcase == "true"
       else
         text
       end
