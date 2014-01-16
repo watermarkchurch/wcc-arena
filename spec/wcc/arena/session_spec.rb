@@ -106,8 +106,8 @@ describe WCC::Arena::Session do
       let(:verb) { :post }
 
       it "calls post on connection with signed version of path argument" do
-        expect(subject.connection).to receive(:post).with(signed).and_return(OpenStruct.new)
-        subject.post("test")
+        expect(subject.connection).to receive(:post).with(signed, "xml", content_type: "text/xml").and_return(OpenStruct.new)
+        subject.post("test", {}, "xml")
       end
 
       it "returns a Response object" do

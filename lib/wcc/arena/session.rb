@@ -3,6 +3,10 @@ module WCC::Arena
   class Session
     attr_reader :connection, :username, :password, :api_key, :api_secret
 
+    DEFAULT_POST_HEADERS = {
+      content_type: "text/xml",
+    }
+
     def initialize(args={})
       @connection = args.fetch(:connection) { WCC::Arena.config.connection }
       @username = args.fetch(:username)
@@ -22,18 +26,14 @@ module WCC::Arena
     end
 
     def get(path, query={})
-      make_signed_request(:get, path, query)
+      build_response(connection.get(signed_path(path, query)))
     end
 
-    def post(path, query={})
-      make_signed_request(:post, path, query)
+    def post(path, query={}, body=nil)
+      build_response(connection.post(signed_path(path, query), body, DEFAULT_POST_HEADERS))
     end
 
     private
-
-    def make_signed_request(method, path, query)
-      build_response(connection.public_send(method, signed_path(path, query)))
-    end
 
     def build_response(faraday_response)
       Response.new(
