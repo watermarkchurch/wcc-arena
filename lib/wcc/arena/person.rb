@@ -50,6 +50,11 @@ module WCC::Arena
       @groups ||= GroupQuery.new(person_id: id, category_id: DEFAULT_CATEGORY_ID).()
     end
 
+    def add_profile(profile_id)
+      ProfileMemberSave.new(person_id: id, profile_id: profile_id).()
+    end
+    alias :add_tag :add_profile
+
   end
 
 end

@@ -30,4 +30,29 @@ describe WCC::Arena::Person do
 
   end
 
+  shared_examples "add a profile" do
+    subject { unit.new(:doc) }
+    before(:each) do
+      subject.stub(:id) { 123 }
+    end
+
+    it "initializes and calls a ProfileMemberSave" do
+      expect(WCC::Arena::ProfileMemberSave).to receive(:new).with(person_id: 123, profile_id: 456).and_return(query = double(:query))
+      expect(query).to receive(:call)
+      subject.public_send(method_name, 456)
+    end
+  end
+
+  describe "#add_profile" do
+    it_behaves_like "add a profile" do
+      let(:method_name) { :add_profile }
+    end
+  end
+
+  describe "#add_tag" do
+    it_behaves_like "add a profile" do
+      let(:method_name) { :add_tag }
+    end
+  end
+
 end
