@@ -21,6 +21,15 @@ module WCC::Arena
     def person_guid
       person_link.split("/").last
     end
+
+    def full_name
+      person.full_name ||
+        [
+          person.first_name,
+          person.last_name
+        ].join(" ")
+    end
+
   end
 
 end
