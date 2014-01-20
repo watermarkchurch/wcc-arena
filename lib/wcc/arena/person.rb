@@ -29,6 +29,7 @@ module WCC::Arena
     attribute :member_status_id, xpath: "MemberStatusID", type: :integer
     attribute :member_status_value, xpath: "MemberStatusValue"
     attribute :status, xpath: "RecordStatusValue"
+    attribute :profile_picture_link, xpath: "BlobLink"
 
     attribute :home_phone, xpath: "HomePhone"
     attribute :business_phone, xpath: "BusinessPhone"
