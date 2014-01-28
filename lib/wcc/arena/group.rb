@@ -11,6 +11,7 @@ module WCC::Arena
     attribute :guid, xpath: "Guid"
 
     attribute :name, xpath: "Name"
+    attribute :active, xpath: "Active", type: :boolean
     attribute :area_name, xpath: "AreaName"
     attribute :area_id, xpath: "AreaID", type: :integer
     attribute :type, xpath: "GroupTypeValue"
@@ -18,6 +19,8 @@ module WCC::Arena
     attribute :leader_id, xpath: "LeaderID", type: :integer
 
     has_one :address, xpath: "TargetLocation", klass: Address
+
+    alias :active? :active
 
     def members
       @members ||= GroupMemberQuery.new(group_id: id).()
