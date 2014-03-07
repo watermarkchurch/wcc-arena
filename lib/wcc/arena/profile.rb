@@ -26,6 +26,10 @@ module WCC::Arena
     def children
       @children ||= ProfileQuery.new(parent_profile_id: id).()
     end
+
+    def members
+      @members ||= ProfileMemberQuery.new(profile_id: id).()
+    end
   end
 
 end
