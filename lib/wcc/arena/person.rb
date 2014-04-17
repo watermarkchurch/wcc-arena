@@ -2,6 +2,7 @@ require 'wcc/arena/person_query'
 
 require 'wcc/arena/address'
 require 'wcc/arena/email'
+require 'wcc/arena/person_attribute_group'
 require 'wcc/arena/phone'
 
 module WCC::Arena
