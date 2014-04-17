@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<PersonAttributeListResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <AttributeGroups>
+    <AttributeGroup>
+      <AttributeGroupID>3</AttributeGroupID>
+      <AttributeGroupName>Member Path</AttributeGroupName>
+      <Attributes>
+        <PersonAttribute>
+          <AttributeID>9</AttributeID>
+          <AttributeName>How Received</AttributeName>
+          <DisplayValue>Giving</DisplayValue>
+          <IntValue>7438</IntValue>
+        </PersonAttribute>
+        <PersonAttribute>
+          <AttributeID>10</AttributeID>
+          <AttributeName>Date Received</AttributeName>
+          <DisplayValue>4/12/2009</DisplayValue>
+          <IntValue>0</IntValue>
+        </PersonAttribute>
+        <PersonAttribute>
+          <AttributeID>21</AttributeID>
+          <AttributeName>Connecting Point Attended Date 1</AttributeName>
+          <DateValue>2010-10-10T00:00:00</DateValue>
+          <DisplayValue>10/10/2010</DisplayValue>
+        </PersonAttribute>
+        <PersonAttribute>
+          <AttributeID>529</AttributeID>
+          <AttributeName>Connecting Point Attended Date 2</AttributeName>
+          <DateValue>2010-10-17T00:00:00</DateValue>
+          <DisplayValue>10/17/2010</DisplayValue>
+        </PersonAttribute>
+        <PersonAttribute>
+          <AttributeID>22</AttributeID>
+          <AttributeName>Testimony Received</AttributeName>
+          <DateValue>2010-10-10T00:00:00</DateValue>
+          <DisplayValue>10/10/2010</DisplayValue>
+        </PersonAttribute>
+        <PersonAttribute>
+          <AttributeID>636</AttributeID>
+          <AttributeName>Essential Beliefs Agreement</AttributeName>
+          <DisplayValue>false</DisplayValue>
+          <IntValue>0</IntValue>
+        </PersonAttribute>
+        <PersonAttribute>
+          <AttributeID>17</AttributeID>
+          <AttributeName>Covenant Received</AttributeName>
+          <DisplayValue>true</DisplayValue>
+          <IntValue>1</IntValue>
+        </PersonAttribute>
+        <PersonAttribute>
+          <AttributeID>18</AttributeID>
+          <AttributeName>Covenant Signed</AttributeName>
+          <DateValue>2013-11-22T00:00:00</DateValue>
+          <DisplayValue>11/22/2013</DisplayValue>
+        </PersonAttribute>
+      </Attributes>
+    </AttributeGroup>
+  </AttributeGroups>
+</PersonAttributeListResult>

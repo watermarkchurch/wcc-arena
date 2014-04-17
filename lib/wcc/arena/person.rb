@@ -3,6 +3,7 @@ require 'wcc/arena/person_query'
 require 'wcc/arena/address'
 require 'wcc/arena/email'
 require 'wcc/arena/person_attribute_group'
+require 'wcc/arena/person_attribute_query'
 require 'wcc/arena/phone'
 
 module WCC::Arena
@@ -50,6 +51,10 @@ module WCC::Arena
 
     def groups
       @groups ||= GroupQuery.new(person_id: id, category_id: DEFAULT_CATEGORY_ID).()
+    end
+
+    def attribute_groups
+      @attribute_groups ||= PersonAttributeQuery.new(person_id: id).()
     end
 
     def add_profile(profile_id)
