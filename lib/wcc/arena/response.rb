@@ -12,6 +12,8 @@ module WCC::Arena
     def xml
       if headers['content-type'] =~ %r[application/xml]
         Nokogiri::XML.parse(@body)
+      else
+        Nokogiri::XML::Document.new
       end
     end
 

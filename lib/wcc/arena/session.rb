@@ -20,17 +20,31 @@ module WCC::Arena
     end
 
     def expires
-      if date_expires_node.text
+      if !date_expires_node.text.empty?
         Time.parse(date_expires_node.text)
+      else
+        Time.new(0)
       end
     end
 
     def get(path, query={})
+      reset unless valid?
       build_response(connection.get(signed_path(path, query)))
     end
 
     def post(path, query={}, body=nil)
+      reset unless valid?
       build_response(connection.post(signed_path(path, query), body, DEFAULT_POST_HEADERS))
+    end
+
+    def valid?
+      login_response.status == 200 &&
+        expires > Time.now &&
+        !id.empty?
+    end
+
+    def reset
+      @login_response = nil
     end
 
     private
@@ -61,7 +75,7 @@ module WCC::Arena
     end
 
     def login_root_node
-      login_response.xml.root
+      login_response.xml.root || NullNode.new
     end
 
     def login_response
@@ -76,7 +90,11 @@ module WCC::Arena
 
     class NullNode
       def text
-        nil
+        ""
+      end
+
+      def at(*args)
+        self
       end
     end
 

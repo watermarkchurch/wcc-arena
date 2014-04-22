@@ -31,10 +31,12 @@ describe WCC::Arena::Response do
   describe "#xml" do
     it "returns an XML document when response has that content-type" do
       expect(xml_response.xml).to be_a(Nokogiri::XML::Document)
+      expect(xml_response.xml.root.name).to eq("Some")
     end
 
-    it "returns nil when the response is not XML" do
-      expect(generic_response.xml).to be_nil
+    it "returns an empty XML document when the response is not XML" do
+      expect(generic_response.xml).to be_a(Nokogiri::XML::Document)
+      expect(generic_response.xml.root).to be_nil
     end
   end
 

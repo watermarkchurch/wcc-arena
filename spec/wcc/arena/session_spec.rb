@@ -14,7 +14,7 @@ describe WCC::Arena::Session do
       connection: login_stub(login_success_body)
     }
   }
-  let(:stub_date_expires) { "2013-12-20T14:46:43.8810288-06:00" }
+  let(:stub_date_expires) { "2213-12-20T14:46:43.8810288-06:00" }
   let(:stub_session_id) { "5hbgn91u-31ha-4253-9818-712232a47583" }
   let(:login_success_body) {
     "<ApiSession xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\"><DateExpires>#{stub_date_expires}</DateExpires><SessionID>#{stub_session_id}</SessionID></ApiSession>"
@@ -49,6 +49,36 @@ describe WCC::Arena::Session do
     end
   end
 
+  describe "valid?" do
+    it "returns false if login_response is not success" do
+      obj = unit.new(args.merge(connection: login_stub(login_failed_body, 403)))
+      expect(obj.valid?).to be_false
+    end
+
+    it "returns false if expires is in the past" do
+      subject.stub(:expires) { Time.now - 5 }
+      expect(subject.valid?).to be_false
+    end
+
+    it "returns false if id is empty or nil" do
+      obj = unit.new(args.merge(connection: login_stub("")))
+      expect(obj.valid?).to be_false
+    end
+
+    it "returns true when everything is peachy" do
+      expect(subject.valid?).to be_true
+    end
+  end
+
+  describe "reset" do
+    it "unsets @login_response value" do
+      subject.id
+      expect(subject.send(:instance_variable_get, :@login_response)).to be_a(WCC::Arena::Response)
+      subject.reset
+      expect(subject.send(:instance_variable_get, :@login_response)).to be_nil
+    end
+  end
+
   context "with good credentials" do
     describe "#id" do
       it "returns the SessionID from the credentialing API call" do
@@ -58,7 +88,7 @@ describe WCC::Arena::Session do
 
     describe "#expires" do
       it "returns the DateExpires from the credentialing API call" do
-        expect(subject.expires).to eq(Time.parse(stub_date_expires))
+        expect(subject.expires).to be_within(1).of(Time.new(2213, 12, 20, 14, 46, 43))
       end
     end
   end
@@ -66,9 +96,19 @@ describe WCC::Arena::Session do
   context "with bad credentials" do
     subject { unit.new(args.merge(connection: login_stub(login_failed_body))) }
     describe "data accessors" do
-      it "return nil" do
-        expect(subject.id).to be_nil
-        expect(subject.expires).to be_nil
+      it "return inert value" do
+        expect(subject.id).to eq("")
+        expect(subject.expires).to eq(Time.new(0))
+      end
+    end
+  end
+
+  context "with bad response" do
+    subject { unit.new(args.merge(connection: login_stub(""))) }
+    describe "data accessors" do
+      it "return inert value" do
+        expect(subject.id).to eq("")
+        expect(subject.expires).to eq(Time.new(0))
       end
     end
   end
@@ -78,6 +118,7 @@ describe WCC::Arena::Session do
     let(:signed) { signed_path("test", {}, "id", "api-secret") }
     before(:each) do
       subject.stub(:id) { "id" }
+      subject.stub(:valid?) { true }
     end
 
     describe "#get" do
@@ -100,6 +141,12 @@ describe WCC::Arena::Session do
         expect(response.status).to eq(200)
         expect(response.body).to eq("poop")
       end
+
+      it "resets the session before running request when it is invalid" do
+        subject.stub(:valid?) { false }
+        expect(subject).to receive(:reset).once
+        subject.get("test")
+      end
     end
 
     describe "#post" do
@@ -116,6 +163,12 @@ describe WCC::Arena::Session do
         expect(response.status).to eq(200)
         expect(response.body).to eq("poop")
       end
+
+      it "resets the session before running request when it is invalid" do
+        subject.stub(:valid?) { false }
+        expect(subject).to receive(:reset).once
+        subject.post("test")
+      end
     end
   end
 
@@ -128,14 +181,14 @@ describe WCC::Arena::Session do
     ).()
   end
 
-  def login_stub(body)
-    connection_stub("login", :post, body)
+  def login_stub(body, status=200)
+    connection_stub("login", :post, body, status)
   end
 
-  def connection_stub(path, method=:get, body="")
+  def connection_stub(path, method=:get, body="", status=200)
     Faraday.new(url: "http://test") do |builder|
       builder.adapter :test do |stub|
-        stub.public_send(method, path) { [200, { "content-type" => "application/xml" }, body] }
+        stub.public_send(method, path) { [status, { "content-type" => "application/xml" }, body] }
       end
     end
   end
