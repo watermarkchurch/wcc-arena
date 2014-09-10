@@ -38,7 +38,7 @@ WCC::Arena.configure do |arena|
   arena.api_secret = 'api_secret'
   arena.api_url = 'https://arena-domain/api.svc/'
 end
-```end
+```
 
 ## Usage
 
@@ -53,14 +53,27 @@ available endpoints please see the code. Below are a few examples of
 some common queries.
 
 ```ruby
-query = WCC::Arena::PersonQuery.new.where(first_name: "Travis")
-people = query.call
+person_query = WCC::Arena::PersonQuery.new.where(first_name: "Travis")
+people = person_query.call
 people.each do |person|
   puts person.full_name
 end
 ```
 This will print the full names of all person records with the first name
-"Travis".
+"Travis". There are a ton of other attributes that are available on a
+Person record. Check them out on the
+[Person](https://github.com/watermarkchurch/wcc-arena/blob/master/lib/wcc/arena/person.rb)
+model.
+
+You can also query tags (or Profiles as they are called under the hood).
+To pull all top level Ministry tags run the following:
+
+```ruby
+# This assumes that your ministry tags have a type ID of 1.
+WCC::Arena::ProfileQuery.new(profile_type_id: 1).call.each do |tag|
+  puts tag.name
+end
+```
 
 ## Contributing
 
