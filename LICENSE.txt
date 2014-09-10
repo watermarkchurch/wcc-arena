@@ -1,4 +1,4 @@
-Copyright (c) 2013 Travis Petticrew
+Copyright (c) 2014 Watermark Community Church
 
 MIT License
 
