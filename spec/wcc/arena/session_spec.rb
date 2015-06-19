@@ -88,7 +88,7 @@ describe WCC::Arena::Session do
 
     describe "#expires" do
       it "returns the DateExpires from the credentialing API call" do
-        expect(subject.expires).to be_within(1).of(Time.new(2213, 12, 20, 14, 46, 43))
+        expect(subject.expires).to be_within(1).of(Time.new(2213, 12, 20, 14, 46, 43, "-06:00"))
       end
     end
   end
