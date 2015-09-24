@@ -26,6 +26,11 @@ describe WCC::Arena::PersonQuery do
       query = subject.new(args)
       expect(query.conditions).to eq({})
     end
+
+    it "sets fields to empty array" do
+      query = subject.new(args)
+      expect(query.fields).to eq([])
+    end
   end
 
   describe "#where" do
@@ -64,14 +69,33 @@ describe WCC::Arena::PersonQuery do
     end
   end
 
+  describe "#select" do
+    it "adds attributes to @fields attr" do
+      subject.select("foo", "bar")
+      subject.select("baz")
+      expect(subject.fields).to eq(["foo", "bar", "baz"])
+    end
+
+    it "returns self" do
+      expect(subject.select("foo")).to eq(subject)
+    end
+  end
+
   describe "#call" do
     let(:fixture_response) { xml_fixture_response("person_list.xml") }
 
     it "makes a get request to /person/list with query params" do
       conditions = { first_name: "Foo", last_name: "Bar" }
-      query = { "firstname" => "Foo", "lastname" => "Bar", "sortfield" => "firstname", "sortdirection" => "DESC" }
+      fields = [:first_name, :last_name]
+      query = {
+        "firstname" => "Foo",
+        "lastname" => "Bar",
+        "sortfield" => "firstname",
+        "sortdirection" => "DESC",
+        "fields" => "firstname,lastname",
+      }
       expect(subject.session).to receive(:get).with("person/list", query).and_return(fixture_response)
-      subject.where(conditions).order("first_name DESC").()
+      subject.where(conditions).order("first_name DESC").select(*fields).()
     end
 
     it "returns a list of Person objects built from the returned records" do
