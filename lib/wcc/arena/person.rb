@@ -1,4 +1,5 @@
 require 'wcc/arena/person_query'
+require 'wcc/arena/single_person_query'
 
 require 'wcc/arena/address'
 require 'wcc/arena/email'
