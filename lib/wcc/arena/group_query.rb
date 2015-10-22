@@ -1,5 +1,4 @@
 module WCC::Arena
-
   class GroupQuery
     attr_reader :session
     attr_reader :person_id
@@ -20,7 +19,7 @@ module WCC::Arena
     private
 
     def response_groups_xml
-      query_response.xml.root.xpath("Groups/Group")
+      query_response.xml.root.xpath("Groups/Group[not(LeaderID='-1')]")
     end
 
     def query_response
@@ -29,8 +28,5 @@ module WCC::Arena
         categoryid: category_id
       )
     end
-
-
   end
-
 end

@@ -38,19 +38,23 @@ describe WCC::Arena::GroupQuery do
 
   describe "#call" do
     let(:fixture_response) { xml_fixture_response("person_group_list.xml") }
+    let(:list) { subject.() }
 
     it "does a get request to the person group list service" do
       expect(subject.session).to receive(:get).with("person/45/group/list", categoryid: 1).and_return(fixture_response)
-      subject.()
+      list
     end
 
     it "returns an array of Group objects" do
       subject.session.stub(:get) { fixture_response }
-      list = subject.()
       list.each do |item|
         expect(item).to be_a(WCC::Arena::Group)
       end
     end
-  end
 
+    it "excludes deleted groups" do
+      subject.session.stub(:get) { fixture_response }
+      expect(list.map(&:leader_id)).to_not include(-1)
+    end
+  end
 end
