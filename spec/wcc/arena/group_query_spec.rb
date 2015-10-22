@@ -56,5 +56,10 @@ describe WCC::Arena::GroupQuery do
       subject.session.stub(:get) { fixture_response }
       expect(list.map(&:leader_id)).to_not include(-1)
     end
+
+    it "returns groups with unique IDs" do
+      subject.session.stub(:get) { fixture_response }
+      expect(list.map(&:id).uniq.size).to eq(list.size)
+    end
   end
 end

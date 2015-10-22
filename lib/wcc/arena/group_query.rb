@@ -11,9 +11,8 @@ module WCC::Arena
     end
 
     def call
-      response_groups_xml.collect do |person_xml|
-        Group.new(person_xml)
-      end
+      groups = response_groups_xml.map { |person_xml| Group.new(person_xml) }
+      groups.uniq { |g| g.id }
     end
 
     private
