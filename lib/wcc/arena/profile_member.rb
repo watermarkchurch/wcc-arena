@@ -9,7 +9,7 @@ module WCC::Arena
     attribute :person_id, xpath: "PersonInformation/PersonID", type: :integer
 
     def person
-      @person ||= PersonQuery.new.where(person_id: person_id).()[0]
+      @person ||= SinglePersonQuery.new(person_id: person_id).()
     end
 
   end

@@ -22,18 +22,17 @@ describe WCC::Arena::ProfileMember do
   end
 
   describe "#person method" do
+    let(:person_id) { 123 }
     before(:each) do
-      subject.stub(:person_id) { 123 }
+      subject.stub(:person_id) { person_id }
     end
 
-    it "fetchs builds and executes a PersonQuery on the person_id attribute" do
-      person_query = double(:person_query)
-      expect(WCC::Arena::PersonQuery).to receive(:new).and_return(person_query).once
-      expect(person_query).to receive(:where).with(person_id: 123).and_return(-> { [:record] })
+    it "fetchs builds and executes a SinglePersonQuery on the person_id attribute" do
+      expect(WCC::Arena::SinglePersonQuery).to receive(:new).once
+        .with(person_id: person_id).and_return(-> { :record })
       expect(subject.person).to eq(:record)
       expect(subject.person).to eq(:record)
     end
-
   end
 
 end
