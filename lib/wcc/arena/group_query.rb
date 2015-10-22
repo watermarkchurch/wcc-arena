@@ -1,5 +1,4 @@
 module WCC::Arena
-
   class GroupQuery
     attr_reader :session
     attr_reader :person_id
@@ -12,15 +11,14 @@ module WCC::Arena
     end
 
     def call
-      response_groups_xml.collect do |person_xml|
-        Group.new(person_xml)
-      end
+      groups = response_groups_xml.map { |person_xml| Group.new(person_xml) }
+      groups.uniq { |g| g.id }
     end
 
     private
 
     def response_groups_xml
-      query_response.xml.root.xpath("Groups/Group")
+      query_response.xml.root.xpath("Groups/Group[not(LeaderID='-1')]")
     end
 
     def query_response
@@ -29,8 +27,5 @@ module WCC::Arena
         categoryid: category_id
       )
     end
-
-
   end
-
 end
