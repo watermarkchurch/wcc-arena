@@ -1,0 +1,4 @@
+<Error>
+  <StatusCode>404</StatusCode>
+  <Message>Invalid person id or guid</Message>
+</Error>

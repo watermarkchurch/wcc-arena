@@ -45,5 +45,11 @@ describe WCC::Arena::SinglePersonQuery do
       expect(record.first_name).to eq("Donald")
       expect(record.last_name).to eq("Duck")
     end
+
+    it "returns nil when person not found" do
+      subject.session
+        .stub(:get) { xml_fixture_response("person_not_found.xml") }
+      expect(subject.()).to be_nil
+    end
   end
 end

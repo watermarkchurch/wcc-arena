@@ -9,7 +9,7 @@ module WCC::Arena
     end
 
     def call
-      Person.new(response_person_xml)
+      Person.new(response_person_xml) if response_person_xml
     end
 
     private
