@@ -18,7 +18,7 @@ module WCC::Arena
     private
 
     def response_groups_xml
-      query_response.xml.root.xpath("Groups/Group[not(LeaderID='-1')]")
+      query_response.xml.root.xpath("Groups/Group[Active='true']")
     end
 
     def query_response

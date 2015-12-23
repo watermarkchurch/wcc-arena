@@ -52,9 +52,9 @@ describe WCC::Arena::GroupQuery do
       end
     end
 
-    it "excludes deleted groups" do
+    it "only includes active groups" do
       subject.session.stub(:get) { fixture_response }
-      expect(list.map(&:leader_id)).to_not include(-1)
+      list.each { |l| expect(l).to be_active }
     end
 
     it "returns groups with unique IDs" do
